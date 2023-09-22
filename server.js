@@ -54,7 +54,7 @@ app.get('/api/toy/:toyId', (req, res) => {
 app.delete('/api/toy/:toyId', (req, res) => {
   const { toyId } = req.params
   toyService
-    .remove(toyId, loggedinUser)
+    .remove(toyId)
     .then((msg) => {
       res.send({ msg, toyId })
     })
