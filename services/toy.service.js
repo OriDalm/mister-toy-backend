@@ -63,7 +63,6 @@ function getSortedToys(toysToSort, sortBy) {
     })
   } else {
     toysToSort.sort((b1, b2) => sortBy.desc * (b2[sortBy.type] - b1[sortBy.type]))
-    console.log('hey')
   }
   return toysToSort
 }
