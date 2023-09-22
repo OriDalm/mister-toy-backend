@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { utilService } from './util.service.js'
-const toys = utilService.readJsonFile('../data/toy.json')
+// const toys = utilService.readJsonFile('../data/toy.json')
+const toys = require('../data/toy.json')
 
 export const toyService = {
   query,
