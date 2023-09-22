@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { utilService } from './util.service.js'
-const toys = utilService.readJsonFile('data/toy.json')
+const toys = utilService.readJsonFile('../data/toy.json')
+
 export const toyService = {
   query,
   get,
@@ -8,7 +9,9 @@ export const toyService = {
   save,
 }
 
-function query(filterBy = {}, sortBy) {
+function query(filterBy, sortBy) {
+  if (!filterBy) return Promise.resolve(toys)
+
   let toysToDisplay = toys
   if (filterBy.name) {
     const regExp = new RegExp(filterBy.name, 'i')
@@ -41,15 +44,14 @@ function remove(toyId) {
 
 function save(toy) {
   if (toy._id) {
-    toyToUpdate.name = toy.name
-    toyToUpdate.price = toy.price
+    const idx = toys.findIndex((currToy) => currToy._id === toy._id)
+    toys[idx] = { ...toys[idx], ...toy }
   } else {
+    toy.createdAt = new Date(Date.now())
     toy._id = _makeId()
-    toys.push(toy)
+    toys.unshift(toy)
   }
-
-  return _saveToysToFile().then(() => toy)
-  // return Promise.resolve(toy)
+  return _saveToysToFile()
 }
 
 function getSortedToys(toysToSort, sortBy) {

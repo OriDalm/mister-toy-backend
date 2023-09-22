@@ -3,10 +3,15 @@ import { fileURLToPath } from 'url'
 import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-import { toyService } from '../frontend/src/services/toy.service'
+import { toyService } from './services/toy.service.js'
+import { loggerService } from './services/logger.service.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
+
+app.use(cookieParser())
+app.use(express.json())
+app.use(express.static('public'))
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('public'))
@@ -18,61 +23,17 @@ if (process.env.NODE_ENV === 'production') {
   app.use(cors(corsOptions))
 }
 
-app.use(cookieParser())
-app.use(express.json())
-app.use(express.static('public'))
-
 app.get('/api/toy', (req, res) => {
   const { filterBy = {}, sort = {} } = req.query.params
 
   toyService
-    .query(filterBy)
+    .query(filterBy, sort)
     .then((toys) => {
       res.send(toys)
     })
     .catch((err) => {
       loggerService.error('Cannot load toys', err)
       res.status(400).send('Cannot load toys')
-    })
-})
-
-app.post('/api/toy', (req, res) => {
-  const { name, price } = req.body
-
-  const toy = {
-    name,
-    price: +price,
-  }
-  toyService
-    .save(toy, loggedinUser)
-    .then((savedToy) => {
-      res.send(savedToy)
-    })
-    .catch((err) => {
-      loggerService.error('Cannot add toy', err)
-      res.status(400).send('Cannot add toy')
-    })
-})
-
-app.put('/api/toy', (req, res) => {
-  const loggedinUser = userService.validateToken(req.cookies.loginToken)
-  if (!loggedinUser) return res.status(401).send('Cannot update toy')
-
-  const { vendor, price, _id } = req.body
-  const toy = {
-    _id,
-    vendor,
-    price: +price,
-    owner,
-  }
-  toyService
-    .save(toy, loggedinUser)
-    .then((savedToy) => {
-      res.send(savedToy)
-    })
-    .catch((err) => {
-      loggerService.error('Cannot update toy', err)
-      res.status(400).send('Cannot update toy')
     })
 })
 
@@ -103,9 +64,36 @@ app.delete('/api/toy/:toyId', (req, res) => {
     })
 })
 
-app.get('/**', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+app.post('/api/toy', (req, res) => {
+  const toy = req.body
+
+  toyService
+    .save(toy)
+    .then((savedToy) => {
+      res.send(savedToy)
+    })
+    .catch((err) => {
+      loggerService.error('Cannot add toy', err)
+      res.status(400).send('Cannot add toy')
+    })
 })
+
+app.put('/api/toy', (req, res) => {
+  const toy = req.body
+  toyService
+    .save(toy)
+    .then((savedToy) => {
+      res.send(savedToy)
+    })
+    .catch((err) => {
+      loggerService.error('Cannot update toy', err)
+      res.status(400).send('Cannot update toy')
+    })
+})
+
+// app.get('/**', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// })
 
 const port = 3030
 app.listen(port, () => {
