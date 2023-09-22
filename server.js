@@ -91,11 +91,11 @@ app.put('/api/toy', (req, res) => {
     })
 })
 
-// app.get('/**', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'))
-// })
+app.get('/**', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
-const port = 3030
+const port = process.env.PORT || 3030
 app.listen(port, () => {
-  loggerService.info(`Server listening on port http://127.0.0.1:${port}/`)
+  loggerService.info(`Server listening on port http://127.0.0.1:${port}`)
 })
