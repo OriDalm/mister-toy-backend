@@ -1,10 +1,42 @@
 [
     {
-    "_id": "n101",
-    "name": "Talking Doll",
-    "price": 123,
-    "labels": ["Doll", "Battery Powered", "Baby"],
-    "createdAt": 1631031801011,
-    "inStock": true
-  }
+        "_id": "PpJie",
+        "name": "Hello",
+        "price": 5,
+        "labels": [
+            "On wheels"
+        ],
+        "createdAt": "2023-09-25T17:08:09.555Z",
+        "inStock": true
+    },
+    {
+        "name": "Buggy",
+        "price": 12,
+        "labels": "Doll",
+        "inStock": true,
+        "createdAt": "2023-09-24T16:38:14.244Z",
+        "_id": "gZcfa"
+    },
+    {
+        "_id": "btFJi",
+        "name": "asfsa",
+        "price": "4",
+        "labels": [
+            "On wheels"
+        ],
+        "createdAt": "2023-09-24T16:35:27.707Z",
+        "inStock": true
+    },
+    {
+        "_id": "n101",
+        "name": "Talking Doll",
+        "price": 123,
+        "labels": [
+            "Doll",
+            "Battery Powered",
+            "Baby"
+        ],
+        "createdAt": 1631031801011,
+        "inStock": true
+    }
 ]
