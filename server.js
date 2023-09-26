@@ -24,7 +24,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/api/toy', (req, res) => {
-  const { filterBy = {}, sort = {} } = req.query.params
+  const params = req.query.params ? req.query.params : {}
+  const { filterBy = {}, sort = {} } = params
 
   toyService
     .query(filterBy, sort)
