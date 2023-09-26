@@ -1,5 +1,17 @@
 [
     {
+        "_id": "7amyf",
+        "name": "Buggy",
+        "price": 50,
+        "labels": [
+            "Art",
+            "Outdoor",
+            "Battery Powered"
+        ],
+        "createdAt": "2023-09-26T19:17:08.980Z",
+        "inStock": false
+    },
+    {
         "_id": "U2Sp7",
         "name": "hey",
         "price": 4,
