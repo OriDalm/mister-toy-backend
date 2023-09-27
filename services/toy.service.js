@@ -47,7 +47,7 @@ function save(toy) {
     const idx = toys.findIndex((currToy) => currToy._id === toy._id)
     toys[idx] = { ...toys[idx], ...toy }
   } else {
-    toy.createdAt = new Date(Date.now())
+    toy.createdAt = Date.now()
     toy._id = _makeId()
     toys.unshift(toy)
   }
