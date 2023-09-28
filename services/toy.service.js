@@ -47,11 +47,12 @@ function save(toy) {
     const idx = toys.findIndex((currToy) => currToy._id === toy._id)
     toys[idx] = { ...toys[idx], ...toy }
   } else {
+    console.log('save-test')
     toy.createdAt = Date.now()
     toy._id = _makeId()
     toys.unshift(toy)
   }
-  return _saveToysToFile()
+  return _saveToysToFile().then(() => toy)
 }
 
 function getSortedToys(toysToSort, sortBy) {
@@ -68,6 +69,7 @@ function getSortedToys(toysToSort, sortBy) {
 }
 
 function _makeId(length = 5) {
+  console.log('makeId')
   let text = ''
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   for (let i = 0; i < length; i++) {
@@ -78,6 +80,7 @@ function _makeId(length = 5) {
 
 function _saveToysToFile() {
   return new Promise((resolve, reject) => {
+    console.log(toys)
     const toysStr = JSON.stringify(toys, null, 4)
     fs.writeFile('data/toy.json', toysStr, (err) => {
       if (err) {
