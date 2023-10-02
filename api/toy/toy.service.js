@@ -57,6 +57,7 @@ async function update(toy) {
       price: toy.price,
       labels: toy.labels,
       inStock: toy.inStock,
+      review: toy.review,
     }
     const collection = await dbService.getCollection('toy')
     await collection.updateOne({ _id: ObjectId(toy._id) }, { $set: toyToSave })
