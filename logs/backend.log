@@ -2172,3 +2172,35 @@
 2.10.2023, 18:41:54 - INFO - Req was made | /
 2.10.2023, 18:41:58 - INFO - Req was made | /
 2.10.2023, 18:42:42 - INFO - Req was made | /
+2.10.2023, 20:22:18 - INFO - Req was made | /
+2.10.2023, 20:22:18 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:22:19 - INFO - Req was made | /
+2.10.2023, 20:22:19 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:26:28 - INFO - Req was made | /
+2.10.2023, 20:26:28 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:26:28 - INFO - Req was made | /
+2.10.2023, 20:26:28 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:29:29 - INFO - Req was made | /
+2.10.2023, 20:29:29 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:29:30 - INFO - Req was made | /
+2.10.2023, 20:29:30 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:29:39 - INFO - Req was made | /
+2.10.2023, 20:29:39 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:29:39 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:29:39 - INFO - Req was made | /
+2.10.2023, 20:29:46 - INFO - Req was made | /
+2.10.2023, 20:29:46 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:29:47 - INFO - Req was made | /
+2.10.2023, 20:29:47 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:37:35 - INFO - server.js loaded...
+2.10.2023, 20:37:53 - INFO - Server listening on port http://127.0.0.1:3030
+2.10.2023, 20:48:20 - INFO - server.js loaded...
+2.10.2023, 20:48:20 - INFO - Server listening on port http://127.0.0.1:3030
+2.10.2023, 20:48:46 - INFO - Req was made | /
+2.10.2023, 20:48:46 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:48:47 - INFO - Req was made | /
+2.10.2023, 20:48:47 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:52:19 - INFO - Req was made | /
+2.10.2023, 20:52:19 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
+2.10.2023, 20:52:19 - INFO - Req was made | /
+2.10.2023, 20:52:19 - DEBUG - Getting Toys | {"name":"","inStock":null,"labels":null}
