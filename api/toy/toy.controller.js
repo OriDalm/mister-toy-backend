@@ -2,12 +2,24 @@ import { toyService } from './toy.service.js'
 import { logger } from '../../services/logger.service.js'
 
 export async function getToys(req, res) {
+  console.log('req', req.query)
   try {
     const filterBy = {
       name: req.query.name || '',
+      inStock: req.query.inStock || null,
+      labels: req.query.labels || null,
     }
+
+    console.log('sorttttt', req.query.sortBy)
+    const sortBy = req.query.sortBy
+      ? {
+          [req.query.sortBy]: 1,
+        }
+      : {}
+    console.log('sortBy', sortBy)
+
     logger.debug('Getting Toys', filterBy)
-    const toys = await toyService.query(filterBy)
+    const toys = await toyService.query(filterBy, sortBy)
     res.json(toys)
   } catch (err) {
     logger.error('Failed to get toys', err)

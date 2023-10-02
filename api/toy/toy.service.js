@@ -5,13 +5,12 @@ import { dbService } from '../../services/db.service.js'
 import { logger } from '../../services/logger.service.js'
 import { utilService } from '../../services/util.service.js'
 
-async function query(filterBy = { name: '' }) {
+async function query(filterBy, sortBy) {
   try {
-    const criteria = {
-      name: { $regex: filterBy.name, $options: 'i' },
-    }
+    console.log('meow', sortBy)
+    const criteria = _buildCriteria(filterBy)
     const collection = await dbService.getCollection('toy')
-    var toys = await collection.find(criteria).toArray()
+    var toys = await collection.find(criteria).sort(sortBy).toArray()
     return toys
   } catch (err) {
     logger.error('cannot find toys', err)
@@ -56,6 +55,8 @@ async function update(toy) {
     const toyToSave = {
       name: toy.name,
       price: toy.price,
+      labels: toy.labels,
+      inStock: toy.inStock,
     }
     const collection = await dbService.getCollection('toy')
     await collection.updateOne({ _id: ObjectId(toy._id) }, { $set: toyToSave })
@@ -87,6 +88,29 @@ async function removeToyMsg(toyId, msgId) {
     logger.error(`cannot add toy msg ${toyId}`, err)
     throw err
   }
+}
+
+function _buildCriteria(filterBy) {
+  console.log('filterBy', filterBy)
+  const { labels, name, inStock } = filterBy
+
+  const criteria = {}
+
+  if (name) {
+    console.log('txt', name)
+    criteria.name = { $regex: name, $options: 'i' }
+  }
+
+  if (labels && labels.length) {
+    criteria.labels = { $in: labels }
+  }
+
+  if (inStock) {
+    criteria.inStock = JSON.parse(inStock)
+  }
+  console.log('criteria', criteria)
+
+  return criteria
 }
 
 export const toyService = {
